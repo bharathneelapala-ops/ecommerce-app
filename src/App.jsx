@@ -6,6 +6,7 @@ import CheckoutPage  from './pages/CheckoutPage';
 function App() {
   return (
     <Routes>
+      
       <Route path="/" element={<HomePage />} />
 
       <Route path="/checkout" element={<CheckoutPage />} />
