@@ -4,6 +4,7 @@ import Header from '../components/Header';
 function HomePage(){
     return(
     <>
+        <title>Ecommerce Project</title>
         <Header />
 
         <div className="home-page">
