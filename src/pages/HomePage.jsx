@@ -21,10 +21,19 @@ function HomePage() {
             });
     }, []);
 
+    const [cart, setCart] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:3000/api/cart-items')
+            .then((response) => {
+                setCart(response.data);
+            });
+    }, []);
+
     return (
         <>
             <title>Ecommerce Project</title>
-            <Header />
+            <Header cart={cart} />
 
             <div className="home-page">
                 <div className="products-grid">
@@ -43,7 +52,7 @@ function HomePage() {
 
                                 <div className="product-rating-container">
                                     <img className="product-rating-stars"
-                                        src={`images/ratings/rating-${product.rating.stars *10}.png`} />
+                                        src={`images/ratings/rating-${product.rating.stars * 10}.png`} />
                                     <div className="product-rating-count link-primary">
                                         {product.rating.count}
                                     </div>
