@@ -24,7 +24,6 @@ function Header() {
 
         <div className="right-section">
           <Link className="orders-link header-link" to="/orders">
-
             <span className="orders-text">Orders</span>
           </Link>
 
