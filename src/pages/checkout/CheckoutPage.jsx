@@ -8,17 +8,34 @@ import { PaymentSummary } from './PaymentSummary';
 function CheckoutPage({ cart }) {
     const [deliveryOptions, setDeliveryOptions] = useState([]);
     const [paymentSummary, setPaymentSummary] = useState(null);
-    useEffect(() => {
-        axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
-            .then((response) => {
-                setDeliveryOptions(response.data);
-            });
+    // useEffect(() => {
+    //     // axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
+    //     //     .then((response) => {
+    //     //         setDeliveryOptions(response.data);
+    //     //     });
 
-        axios.get('/api/payment-summary')
-            .then((response) => {
-                setPaymentSummary(response.data);
-            })
+    //     // axios.get('/api/payment-summary')
+    //     //     .then((response) => {
+    //     //         setPaymentSummary(response.data);
+    //     //     })
+    // }, []);
+
+    useEffect(() => {
+        const getCheckoutData = ( async () => {
+            const response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime');
+            setDeliveryOptions(response.data)
+        })
+        getCheckoutData();
     }, []);
+
+    useEffect(() => {
+        const getPaymentSummary = (async () => {
+            const response = await axios.get('/api/payment-summary');
+            setPaymentSummary(response.data);
+        });
+        getPaymentSummary();
+    }, []);
+
     return (
         <>
             <title>Checkout</title>
